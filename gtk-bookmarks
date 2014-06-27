@@ -1,24 +1,7 @@
 #!/bin/bash
-
-
-gtk-bookmarks_usage () {
+CONFIG_FILE="~/.gtk-bookmarks"
+if [ "$1" == '-l' ] ; then
+	grep -o '\(/[a-zA-Z\-]*\)*' "${CONFIG_FILE}" | sed -r 's .{2}  '
+else
 	echo "Usage: bm [-l] [-h]"
-}
-
-gtk-bookmarks_list () {
-	local CONFIG_FILE=$1
-	grep -o '\(/[a-zA-Z\-]*\)*' .gtk-bookmarks | sed -r 's .{2}  '
-}
-
-gtk-bookmarks () {
-	local CONFIG_FILE="~/.gtk-bookmarks"
-	if [ "$1" == '-l' ]
-	then
-		gtk-bookmarks_list "${CONFIG_FILE}"
-	elif [ "$1" == '-h' ]
-	then
-		gtk-bookmarks_usage
-	else
-		gtk-bookmarks_usage
-	fi
-}
+fi
